@@ -14,8 +14,22 @@ Web Framework: Flask
 
 Classification Mode: Tensorflow, Convolutional Neural Network
 
+#### Performance Screenshots
+
+- Input section
+  
+  ![input region] (static/imgs/screenshot_1.png)
+
+- Input example
+  
+  ![input region] (static/imgs/screenshot_2.png)
+
+- Output example
+  
+  ![input region] (static/imgs/screenshot_3.png)
+
 ---
 
-No Allowing For any Business Use
+<span style="color:red">*No Allowing For any Business Use*</span>
 
-Author: @makethedayunique
+Author: **@makethedayunique**
