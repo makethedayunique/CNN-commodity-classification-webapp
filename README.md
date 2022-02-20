@@ -18,15 +18,15 @@ Classification Mode: Tensorflow, Convolutional Neural Network
 
 - Input section
   
-  ![input region] (static/imgs/screenshot_1.png)
+  ![screenshot](static/imgs/screenshot_1.png)
 
 - Input example
   
-  ![input region] (static/imgs/screenshot_2.png)
+  ![sreenshot](static/imgs/screenshot_2.png)
 
 - Output example
   
-  ![input region] (static/imgs/screenshot_3.png)
+  ![screenshot](static/imgs/screenshot_3.png)
 
 ---
 
