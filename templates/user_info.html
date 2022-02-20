@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="../static/images/logoicon.png">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/logoicon.png') }}">
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='layui/css/layui.css' ) }}" media="all">
+</head>
+
+<body>
+  <img src="{{ url_for( 'static', filename='' ) }}" height="100" width="500" />
+	<blockquote class="layui-elem-quote">Basic Information of {{user_id}}:</blockquote>
+	<br>
+	<table border="1" class="layui-table">
+		  <colgroup>
+		      <col width="150">
+		      <col width="200">
+		      <col>
+		  </colgroup>
+		<thead>
+			<tr>
+				{% for col in info_dicc %}
+				<th> {{ col }} </th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{% for col in info_dicc %}
+				<th> {{ info_dicc[col] }} </th>
+				{% endfor %}
+			</tr>
+			<tr>
+				<td colspan="7">
+				    最近记录统计
+				</td>
+			</tr>
+			<tr>
+				{% for col in com_info %}
+				<th> {{ col }} </th>
+				{% endfor %}
+			</tr>
+			<tr>
+				{% for col in com_info %}
+				<td> {{ com_info[col] }} </td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+  <legend>小票上传情况</legend>
+</fieldset>
+{% for year in trip_menu %}
+<div class="layui-collapse" lay-accordion="">
+  	<div class="layui-colla-item">
+    <h2 class="layui-colla-title">{{year}}</h2>
+    <div class="layui-colla-content">
+    	{% for month in trip_menu[year] %}
+    	<div class="layui-collapse" lay-accordion="">
+  			<div class="layui-colla-item">
+    		<h2 class="layui-colla-title">{{month}}</h2>
+    		<div class="layui-colla-content">
+    			{% for day in trip_menu[year][month] %}
+    			<div class="layui-collapse" lay-accordion="">
+  					<div class="layui-colla-item">
+    				<h2 class="layui-colla-title">{{day}}</h2>
+    				<div class="layui-colla-content">
+    					{% for id in trip_menu[year][month][day] %}
+    					<p><a  href="{{ url_for('trip_route.trip_info', upload_id=id) }}">{{id}}</a></p>
+    					{% endfor %}
+    				</div></div></div>
+    			{% endfor %}
+    		</div></div></div>
+    	{% endfor %}
+    </div></div></div>
+{% endfor %}
+
+
+<script src="{{ url_for('static', filename='layui/layui.js') }}" charset="utf-8"></script>
+<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element();
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+</body>
+</html>

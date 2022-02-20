@@ -1,0 +1,41 @@
+#title_1{
+	color : white;
+	font-size: 50px;
+	position: absolute;
+	left: 60%;
+	top: 30%
+}
+
+#title_2{
+	color: white;
+	font-size: 30px;
+	position: absolute;
+	left: 60%;
+	top: 40%;
+}
+
+#banner{
+	position: absolute;
+	top: 5%;
+}
+
+#btn_set{
+	position: absolute;
+	top: 50%;
+	left: 60%;
+}
+
+.btn_main{
+	width: 150px;
+	height: 50px;
+	background-color: #3399FF;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	border: none;
+}
+
+.btn_main:hover{
+	cursor: pointer;
+	background-color: #1E90FF;
+}

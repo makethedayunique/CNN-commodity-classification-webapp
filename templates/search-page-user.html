@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title></title>
+	<link rel="shortcut icon" href="../static/images/logoicon.png">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/logoicon.png') }}">
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='layui/css/layui.css' ) }}" media="all">
+</head>
+
+<body>
+	<img src="{{ url_for( 'static', filename='' ) }}" height="100" width="500" />
+	<blockquote class="layui-elem-quote">This is a user welcome page, input the user_id you want to know</blockquote>
+	<form class="layui-form-item" class="layui-form" action="/user/search-user" method = "post">
+		<p><input type = "text" name = "user_id" class="layui-input" id='search-content' /></p>
+		<br>
+		<p><input type = "submit" value = "submit" class="layui-btn" id='search-btn' disabled=true /></p>
+	</form>
+
+<script src="{{ url_for('static', filename='layui/layui.js') }}" charset="utf-8"></script>
+<script>
+layui.use(['element', 'layer'], function(){
+  var $ = layui.jquery;
+  var element = layui.element;
+  var layer = layui.layer;
+   
+   $('#search-content').bind("input", function(event){
+
+	  	if($('#search-content').val()==''){
+	  		$('#search-btn').attr('disabled', true);
+	  		// alert('物质');
+	  	}else{
+	  		$('#search-btn').attr('disabled', false);
+	  		// alert('优质');
+	  	}
+  	});
+
+  {% with messages = get_flashed_messages() %}
+  		{% if messages %}
+  			var popup_text = '';
+  			{% for message in messages %}
+  				popup_text = popup_text + '{{ message }}'
+  			{% endfor %}
+  				layer.open({
+					type: 1
+			        ,offset: 'auto' //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+			        ,content: '<div style="padding: 20px 100px;">' + popup_text + '</div>'
+			        ,btn: '关闭全部'
+			        ,btnAlign: 'c' //按钮居中
+			        ,shade: 0 //不显示遮罩
+			        ,yes: function(){
+			          layer.closeAll();
+			        }
+				});
+		{% endif %}
+  {% endwith %}
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+
+</body>
+</html>

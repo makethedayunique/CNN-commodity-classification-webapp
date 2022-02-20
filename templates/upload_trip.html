@@ -1,0 +1,130 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<title>{{ trip_info['upload_id'] }}</title>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="../static/images/logoicon.png">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/logoicon.png') }}">
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='layui/css/layui.css' ) }}" media="all">
+</head>
+</head>
+<body>
+	<img src="{{ url_for( 'static', filename= '' ) }}" height="100" width="500" />
+	<blockquote class="layui-elem-quote">Details for trip {{ trip_info['upload_id'] }}</blockquote>
+	<div class="layui-tab">
+		<ul class="layui-tab-title">
+			<li class="layui-this">基本信息</li>
+			<li>图片信息</li>
+			<li>商品信息</li>
+		</ul>
+		<div class="layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<table class="layui-table" lay-even="" lay-skin="nob">
+				  <colgroup>
+				    <col width="25%">
+				    <col width="25%">
+				    <col width="25%">
+				    <col width="25%">
+				  </colgroup>
+				  <thead>
+				    <tr>
+				      <th>upload_id</th>
+				      <th>shop_name</th>
+				      <th>branch_shop_name</th>
+				      <th>total_spend</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>{{ trip_info['upload_id'] }}</td>
+				      <td>{{ trip_info['shop_name'] }}</td>
+				      <td>{{ trip_info['branch_shop_name'] }}</td>
+				      <td>{{ trip_info['total_spend'] }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+				<br>
+
+				<table class="layui-table" lay-even="" lay-skin="nob">
+				  <colgroup>
+				    <col width="25%">
+				    <col width="25%">
+				    <col width="25%">
+				    <col width="25%">
+				  </colgroup>
+				  <thead>
+				    <tr>
+				      <th>purchase_date</th>
+				      <th>trip_type</th>
+				      <th>audit_state</th>
+				      <th>complain_audit_state</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>{{ trip_info['purchase_date'] }}</td>
+				      <td>{{ trip_info['trip_type'] }}</td>
+				      <td>{{ trip_info['receipt_state'] }}</td>
+				      <td>{{ trip_info['complain_audit_state'] }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+
+			</div>
+			<div class="layui-tab-item">
+				{% for img in image_url %}
+				<img src={{img}} height="1000" width="600" />
+				{% endfor %}
+			</div>
+			<div class="layui-tab-item">
+				<table class="layui-table" lay-even="" lay-skin="nob">
+				  <colgroup>
+				    <col>
+				    <col>
+				    <col>
+				    <col>
+				  </colgroup>
+				  <thead>
+				    <tr>
+				      <th>goods_name</th>
+				      <th>unit_price</th>
+				      <th>amount</th>
+				      <th>sub_total</th>
+				      <th>category</th>
+				    </tr> 
+				  </thead>
+				  <tbody>
+				  	{% for trip_item in trip_items %}
+				    <tr>
+				      <td>{{ trip_item['goods_name'] }}</td>
+				      <td>{{ trip_item['unit_price'] }}</td>
+				      <td>{{ trip_item['amount'] }}</td>
+				      <td>{{ trip_item['sub_total'] }}</td>
+				      <td>{{ trip_item['CNN_cat2'] }}</td>
+				    </tr>
+				    {% endfor %}
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+<script src="{{ url_for('static', filename='layui/layui.js') }}" charset="utf-8"></script>
+<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element();
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
+
+</body>
+</html>

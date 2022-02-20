@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="{{ url_for( 'static', filename='layui/css/layui.css' ) }}" media="all">
+
+	<link rel="shortcut icon" href="../static/images/logoicon.png">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='images/logoicon.png') }}">
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index_css.css') }}">
+	<link rel="stylesheet" type="text/css" href="../static/css/index_css.css">
+	<title></title>
+	<style>
+		body{
+			background-image: url("../static/images/index_background1.jpg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 100% 100%;
+			}
+	</style>
+</head>
+<body>
+	<img id='banner' src="" height="200" width="1000">
+	<p id="title_1">欢迎使用</p>
+	<p id="title_2">这是一个简单的查询工具</p>
+
+	<div id="btn_set">
+		<button id="btn_main_1" class="layui-btn layui-btn-big btn_main" onclick="window.location.href='{{ url_for("jump_trip") }}'">订单查询</button>
+		<button id="btn_main_2" class="layui-btn layui-btn-big btn_main" onclick="window.location.href='{{ url_for("jump_user") }}'">用户查询</button>
+		<button id="btn_main_3" class="layui-btn layui-btn-big btn_main" onclick="window.location.href='{{ url_for("jump_dl") }}'">类别预测</button>
+	</div>
+
+	<script src="layui/layui.js" charset="utf-8"></script>
+	<script src="{{ url_for('static', filename='layui/layui.js') }}" charset="utf-8"></script>
+	<script>
+	layui.use(['element', 'layer'], function(){
+	  var element = layui.element();
+	  var layer = layui.layer;
+	  
+	  //监听折叠
+	  element.on('collapse(test)', function(data){
+	    layer.msg('展开状态：'+ data.show);
+	  });
+	});
+	</script>
+</body>
+</html>
